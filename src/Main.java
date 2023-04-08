@@ -1,4 +1,7 @@
 import edu.princeton.cs.stdlib.StdDraw;
+
+
+
 /**
  *
  * Primer taller Programacion Avanzada
@@ -9,8 +12,21 @@ import edu.princeton.cs.stdlib.StdDraw;
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static double  Colision(double pos, double vel) {
+        if (Math.abs(pos + vel) > 1.0) {
+            vel = -vel;
 
+        }
+        return vel;
+    }
+    public static double Movimiento(double pos, double vel){
+        pos += vel;
+        return pos;
+
+    }
+
+
+    public static void main(String[] args) {
         double min = -1.0;
         double max = 1.0;
 
@@ -21,11 +37,11 @@ public class Main {
 
 
         /* Defino las variables de posicion
-        * en este caso defino la posicion de la primera linea al azar
-        * y las otras 5 lineas las genero en base a la posicion de la linea
-        * generada anteriormente restandola por un numero generado al azar divido por 10
-        * para que la distancia sea lo necesario para que se distingan pero para que no esten tan separadas
-        * */
+         * en este caso defino la posicion de la primera linea al azar
+         * y las otras 5 lineas las genero en base a la posicion de la linea
+         * generada anteriormente restandola por un numero generado al azar divido por 10
+         * para que la distancia sea lo necesario para que se distingan pero para que no esten tan separadas
+         * */
 
         //Posicion Primera linea
 
@@ -91,90 +107,88 @@ public class Main {
         double vx0 = Math.random()/100;
         double vy0 = Math.random()/100;
 
+
+
+
+
+
+
         while (true) {
 
 
             // Colision
 
 
-            if (Math.abs(x0 + vx0) > 1.0) {
-                vx0 = -vx0;
-            }
-            if (Math.abs(x1 + vx) > 1.0) {
-                vx = -vx;
-            }
+            vx0 = Colision(x0,vx0);
+            vx = Colision(x1,vx);
+            vy0 = Colision(y0,vy0);
+            vy = Colision(y1,vy);
 
-            if (Math.abs(y0 + vy0) > 1.0) {
-                vy0 = -vy0;
-            }
-            if (Math.abs(y1 + vy) > 1.0) {
-                vy = -vy;
-            }
-
-
-
-            // Movimiento de las lineas
-
-
-                x0 += vx0;
-                x1 += vx;
-                x2 += vx0;
-                x3 += vx;
-                x4 += vx0;
-                x5 += vx;
-                x6 += vx0;
-                x7 += vx;
-                x8 += vx0;
-                x9 += vx;
-                x10 += vx0;
-                x11 += vx;
+            x0 = Movimiento(x0,vx0);
+            x1 = Movimiento(x1,vx);
+            x2 = Movimiento(x2,vx0);
+            x3 = Movimiento(x1,vx);
+            x4 = Movimiento(x4,vx0);
+            x5 = Movimiento(x1,vx);
+            x6 = Movimiento(x6,vx0);
+            x7 = Movimiento(x1,vx);
+            x8 = Movimiento(x8,vx0);
+            x9 = Movimiento(x1,vx);
+            x10 = Movimiento(x10,vx0);
+            x11 = Movimiento(x1,vx);
 
 
-                y0 += vy0;
-                y1 += vy;
-                y2 += vy0;
-                y3 += vy;
-                y4 += vy0;
-                y5 += vy;
-                y6 += vy0;
-                y7 += vy;
-                y8 += vy0;
-                y9 += vy;
-                y10 += vy0;
-                y11 += vy;
+            y0 = Movimiento(y0,vy0);
+            y1 = Movimiento(y1,vy);
+            y2 = Movimiento(y2,vy0);
+            y3 = Movimiento(y3,vy);
+            y4 = Movimiento(y4,vy0);
+            y5 = Movimiento(y5,vy);
+            y6 = Movimiento(y6,vy0);
+            y7 = Movimiento(y7,vy);
+            y8 = Movimiento(y8,vy0);
+            y9 = Movimiento(y9,vy);
+            y10 = Movimiento(y10,vy0);
+            y11 = Movimiento(y11,vy);
 
 
-                StdDraw.clear();
-
-                //Dibujo de las lineas
 
 
-                StdDraw.setPenColor(StdDraw.RED);
-                StdDraw.line(x0, y0, x1, y1);
-
-                StdDraw.setPenColor(StdDraw.BLACK);
-                StdDraw.line(x2, y2, x3, y3);
-
-                StdDraw.setPenColor(StdDraw.BLUE);
-                StdDraw.line(x4, y4, x5, y5);
-
-                StdDraw.setPenColor(StdDraw.GREEN);
-                StdDraw.line(x6, y6, x7, y7);
-
-                StdDraw.setPenColor(StdDraw.MAGENTA);
-                StdDraw.line(x8, y8, x9, y9);
-
-                StdDraw.setPenColor(StdDraw.GRAY);
-                StdDraw.line(x10, y10, x11, y11);
 
 
-                StdDraw.show();
+            StdDraw.clear();
 
-            }
+            //Dibujo de las lineas
 
+
+            StdDraw.setPenColor(StdDraw.RED);
+            StdDraw.line(x0, y0, x1, y1);
+
+            StdDraw.setPenColor(StdDraw.BLACK);
+            StdDraw.line(x2, y2, x3, y3);
+
+            StdDraw.setPenColor(StdDraw.BLUE);
+            StdDraw.line(x4, y4, x5, y5);
+
+            StdDraw.setPenColor(StdDraw.GREEN);
+            StdDraw.line(x6, y6, x7, y7);
+
+            StdDraw.setPenColor(StdDraw.MAGENTA);
+            StdDraw.line(x8, y8, x9, y9);
+
+            StdDraw.setPenColor(StdDraw.GRAY);
+            StdDraw.line(x10, y10, x11, y11);
+
+
+            StdDraw.show();
 
         }
+
+
     }
+
+
+}
 
 
 
